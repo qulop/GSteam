@@ -7,6 +7,7 @@ class GenreModel(db.Model):
     id = db.Table(db.BigInteger, primary_key=True)
     name = db.Table(db.String(25), unique=True, nullable=False)
     description = db.Table(db.Text, nullable=True)
+
     games = db.relationship("GameModel", lazy=True)
 
     def __init__(self, name, description):

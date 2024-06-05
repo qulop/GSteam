@@ -6,6 +6,7 @@ class DeveloperModel(db.Model):
 
     id = db.Table(db.BigInteger, primary_key=True)
     title = db.Table(db.String(30), nullable=False, unique=True)
+
     games = db.relationship("GameModel", lazy=True)
 
     def __init__(self, title):

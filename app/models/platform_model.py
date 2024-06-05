@@ -7,6 +7,7 @@ class PlatformModel(db.Model):
     id = db.Table(db.BigInteger, primary_key=True)
     name = db.Table(db.String(20), nullable=False, unique=True)
     vendor = db.Table(db.String(20), nullable=False, unique=True)
+
     games = db.relationship("GameModel", lazy=True)
 
     def __init__(self, name, vendor):

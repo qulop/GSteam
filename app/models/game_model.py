@@ -13,8 +13,10 @@ class GameModel(db.Model):
                             db.ForeignKey("developer.id", onupdate="CASCADE", ondelete="CASCADE"))
     genre_id = db.Table(db.BigInteger,
                         db.ForeignKey("genre.id", onupdate="CASCADE", ondelete="CASCADE"))
-    platform_id=  db.Table(db.BigInteger,
+    platform_id = db.Table(db.BigInteger,
                            db.ForeignKey("platform.id", onupdate="CASCADE", ondelete="CASCADE"))
+
+
 
     def __init__(self, title, price, score):
         self.title = title
