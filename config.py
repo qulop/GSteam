@@ -1,4 +1,7 @@
 import os
+import dotenv
+
+dotenv.load_dotenv()
 
 root_dir = os.path.abspath(os.path.dirname(__file__))
 
