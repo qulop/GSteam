@@ -1,16 +1,12 @@
 import os
 
-file_basedir = os.path.abspath(os.path.dirname(__file__))
-
-host = "localhost"
-port = 5432
-db_name = "gsteam"
+root_dir = os.path.abspath(os.path.dirname(__file__))
 
 # SQLAlchemy config
-SQLALCHEMY_DATABASE_URI = f"postgresql://{host}:{port}/{db_name}"
-SQLALCHEMY_MIGRATE_REPO = 0
+SQLALCHEMY_DATABASE_URI = os.getenv("DB_URL")
+SQLALCHEMY_MIGRATE_REPO = os.path.join(root_dir, "db_repo")
 
 # App config
 DEBUG = True
 CSRF_ENABLED = True
-SECRET_KEY = "2e083f994e609ed7527b112c5c9fc74e55359caae67bfdbc9d63c262b4f51e4d"
+SECRET_KEY = os.getenv("APP_SECRET_KEY")
