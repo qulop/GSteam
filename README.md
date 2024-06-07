@@ -17,7 +17,7 @@ ___
 1) Rename `.env.example` to `.env` at the same time substituting data that is valid for you;
 2) Rename `.env.db.example` to `.env.db` also performing data substitution;
 3) Run `docker-compose up`.
-
+___
 
 ### Database scheme
 

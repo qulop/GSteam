@@ -1,3 +1,5 @@
+db_repo/
+
 # Enviroment config
 .env
 .env.db
