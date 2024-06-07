@@ -4,11 +4,11 @@ from app import db
 class PlatformModel(db.Model):
     __tablename__ = "platform"
 
-    id = db.Table(db.BigInteger, primary_key=True)
-    name = db.Table(db.String(20), nullable=False, unique=True)
-    vendor = db.Table(db.String(20), nullable=False, unique=True)
+    id = db.Column(db.BigInteger, primary_key=True)
+    name = db.Column(db.String(20), nullable=False, unique=True)
+    vendor = db.Column(db.String(20), nullable=False, unique=True)
 
-    games = db.relationship("GameModel", lazy=True)
+    items = db.relationship("ItemModel", secondary="item_platform_rel", back_populates="platforms")
 
     def __init__(self, name, vendor):
         self.name = name

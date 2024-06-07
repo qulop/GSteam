@@ -4,10 +4,10 @@ from app import db
 class DeveloperModel(db.Model):
     __tablename__ = "developer"
 
-    id = db.Table(db.BigInteger, primary_key=True)
-    title = db.Table(db.String(30), nullable=False, unique=True)
+    id = db.Column(db.BigInteger, primary_key=True)
+    title = db.Column(db.String(30), nullable=False, unique=True)
 
-    games = db.relationship("GameModel", lazy=True)
+    items = db.relationship("ItemModel", back_populates="developer")
 
     def __init__(self, title):
         self.title = title
