@@ -3,40 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=\, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href={{ url_for("static", filename="css/style.css") }}>
+    <link rel="stylesheet" type="text/css" href="../static/css/index.css">
     
-    <title>GSteam - {{page}}</title>
+    <title>GSteam - {{ page }}</title>
 </head>
 <body>
-    {% for n in names %}
-    <h1>Hello, {{n}}</h1>
-    {% endfor %}
-
     <header>
-        <input type="text" class="header_search_bar" placeholder="Search in...">\
-
-        <div class="header_links">
-            <a href="#">Cart</a>
+        <a class="header-logo" href="index.html">
+            <img src="../static/images/app/logo.png">
+        </a>
+        <!-- <div class="header-search">
+            <input type="search" placeholder="search">
+            <button type="button">Go</button>
+        </div> -->
+        <div class="header-nav">
+            <ul>
+                <li><a href="index.html">Store</a></li>
+                <li><a href="#">Community</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </div>
+        <div class="header-login">
             <a href="login.html">Sign In</a>
         </div>
     </header>
 
-    <div class="item_card">
-        <div class="item_image">
-            <img src="" alt="Game">
-        </div>
-        <div class="item_price">10.31</div>
-        <div class="card_content">
-            <div class="item_title">Game</div>
-            <div class="card_details">
-                <span class="item_platform"></span>
-                <div class="item_tags">
-                    
-                </div>
+
+    <div class="items-container">
+        <div class="item-card">
+            <div class="item-image">
+                <img src="../static/images/app/items/among-us.avif" alt="among-us">
+            </div>
+            <div class="item-info">
+                <div class="item-title">Among Us</div>
+                <div class="item-price">$3.99</div>
             </div>
         </div>
 
+        <div class="item-card">
+            <div class="item-image">
+                <img src="../static/images/app/items/barotrauma.avif" alt="barotrauma">
+            </div>
+            <div class="item-info">
+                <div class="item-title">Barotrauma</div>
+                <div class="item-price">$19.99</div>
+            </div>
+        </div>
     </div>
-    
 </body>
 </html>
