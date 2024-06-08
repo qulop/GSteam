@@ -1,0 +1,123 @@
+body {
+    background-color: #222;
+    color: grey;
+}
+
+header {
+    background-color: #2d2d2d;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    border-radius: 20px;
+} 
+
+header a {
+    text-decoration: none;
+}
+
+.header-logo {
+    display: inline-block;
+    vertical-align: middle; 
+    padding-left: 10px;
+}
+
+.header-nav {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    padding-right: 10px;
+}
+
+.header-login {
+    vertical-align: middle;
+    margin-left: auto;
+    padding-right: 10px;
+}
+
+.header-nav ul {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+
+.header-logo, .header-nav {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 25px;
+}
+
+.header-logo img {
+    width: 150px;
+    height: auto;
+}
+
+
+.header-nav li {
+    margin-right: 25px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.header-nav a {
+    vertical-align: middle;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 30px;
+    color: #a9a4a4;
+}
+
+.header-login a {
+    vertical-align: middle;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 30px;
+    color: #0f0
+}
+
+.items-container {
+    width: 95%;
+    height: 100vh;
+    background-color: #2d2d2d;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.item-card {
+    margin-top: 20px;
+    background-color: #222;
+    width: 276px;
+    height: 450px;
+    padding-right: 10px;
+}
+
+
+.item-image img {
+    display: block;
+    width: 270px;
+    height: 368;
+}
+
+.item-card .item-image img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.item-info .item-title {
+    padding-left: 5px;
+    padding-top: 3px;
+    font-size: 25px;
+    color: #068f06;
+}
+
+.item-info .item-price {
+    padding-top: 20px;
+    font-size: 30px;
+    padding-left: 5px;
+    color: white;
+}
+
+
