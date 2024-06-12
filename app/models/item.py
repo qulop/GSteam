@@ -6,7 +6,7 @@ class ItemModel(db.Model):
     __tablename__ = "item"
 
     id = db.Column(db.BigInteger, primary_key=True)
-    title = db.Column(db.String(20), nullable=False)
+    title = db.Column(db.String(64), nullable=False)
     price = db.Column(db.Numeric(5, 2), nullable=False, default=0)
     score = db.Column(db.Numeric(2, 1), CheckConstraint("score >= 0 AND score <= 5"), nullable=False, default=0)
     description = db.Column(db.Text, nullable=False)
@@ -17,10 +17,11 @@ class ItemModel(db.Model):
     carts = db.relationship("CartModel", secondary="cart_item_rel", back_populates="items")
     developer = db.relationship("DeveloperModel", back_populates="items")
 
-    def __init__(self, title, price, score, image, developer_id):
+    def __init__(self, title, price, score, description, image, developer_id):
         self.title = title
         self.price = price
         self.score = score,
+        self.description = description
         self.image = image,
         self.developer_id = developer_id
 

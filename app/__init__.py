@@ -21,3 +21,6 @@ from app.models import *
 
 with app.app_context():
     db.create_all()
+
+    from app.fill_database import fill_defaults
+    fill_defaults("static/data/db_fill.json")

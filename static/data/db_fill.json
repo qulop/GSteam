@@ -1,0 +1,133 @@
+{
+  "consumer": [
+    {
+      "profile_name": "Qulop",
+      "email": "qulop.example@gmail.com",
+      "password": "to_hash_0"
+    },
+    {
+      "profile_name": "Joe",
+      "email": "joe.example@yahoo.com",
+      "password": "to_hash_1"
+    },
+    {
+      "profile_name": "MMartiiiNNN",
+      "email": "mmaaarrtiinn@gmail.com",
+      "password": "to_hash_2"
+    }
+  ],
+  "developer": [
+    {
+      "title": "InnerSloth"
+    },
+    {
+      "title": "Undertow Games"
+    },
+    {
+      "title": "Remedy Entertainment"
+    },
+    {
+      "title": "Bend Studio"
+    },
+    {
+      "title": "Quantic Dream"
+    },
+    {
+      "title": "Supergiant Games"
+    },
+    {
+      "title": "Lo-Fi Games"
+    },
+    {
+      "title": "Overkill Software"
+    },
+    {
+      "title": "Asobo Studio"
+    },
+    {
+      "title": "Red Barrels"
+    }
+  ],
+  "item": [
+    {
+      "title": "Among Us",
+      "price": 5,
+      "score": 4.5,
+      "description": "A popular online multiplayer game by InnerSloth.",
+      "image": "D:/VSProjs/Py/GSteam/static/images/app/items/among-us.avif",
+      "developer_id": 1
+    },
+    {
+      "title": "Barotrauma",
+      "price": 15,
+      "score": 4,
+      "description": "A survival-horror submarine simulator by Undertow Games.",
+      "image": "D:/VSProjs/Py/GSteam/static/images/app/items/barotrauma.avif",
+      "developer_id": 2
+    },
+    {
+      "title": "Control",
+      "price": 30,
+      "score": 4.7,
+      "description": "An action-adventure game by Remedy Entertainment.",
+      "image": "D:/VSProjs/Py/GSteam/static/images/app/items/control.avif",
+      "developer_id": 3
+    },
+    {
+      "title": "Days Gone",
+      "price": 40,
+      "score": 4.2,
+      "description": "An action-adventure survival horror game by Bend Studio.",
+      "image": "D:/VSProjs/Py/GSteam/static/images/app/items/days-gone.avif",
+      "developer_id": 4
+    },
+    {
+      "title": "Detroit: Become Human",
+      "price": 30,
+      "score": 4.7,
+      "description": "An interactive drama and action-adventure game by Quantic Dream.",
+      "image": "D:/VSProjs/Py/GSteam/static/images/app/items/detroit-become-human.avif",
+      "developer_id": 5
+    },
+    {
+      "title": "Hades 2",
+      "price": 25,
+      "score": 4.8,
+      "description": "A roguelike action dungeon crawler by Supergiant Games.",
+      "image": "D:/VSProjs/Py/GSteam/static/images/app/items/hades-2.avif",
+      "developer_id": 6
+    },
+    {
+      "title": "Kenshi",
+      "price": 20,
+      "score": 4.5,
+      "description": "A free-roaming squad based RPG by Lo-Fi Games.",
+      "image": "D:/VSProjs/Py/GSteam/static/images/app/items/kenshi.avif",
+      "developer_id": 7
+    },
+    {
+      "title": "Payday 2",
+      "price": 10,
+      "score": 4.3,
+      "description": "A cooperative first-person shooter video game by Overkill Software.",
+      "image": "D:/VSProjs/Py/GSteam/static/images/app/items/payday-2.avif",
+      "developer_id": 8
+    },
+    {
+      "title": "A Plague Tale: Innocence",
+      "price": 40,
+      "score": 4.4,
+      "description": "An action-adventure horror stealth game by Asobo Studio.",
+      "image": "D:/VSProjs/Py/GSteam/static/images/app/items/plague-tale-innocence.avif",
+      "developer_id": 9
+    },
+    {
+      "title": "The Outlast Trials",
+      "price": 30,
+      "score": 4.6,
+      "description": "A first-person psychological horror survival video game by Red Barrels.",
+      "image": "D:/VSProjs/Py/GSteam/static/images/app/items/the-outlast-trials.avif",
+      "developer_id": 10
+    }
+  ]
+}

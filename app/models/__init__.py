@@ -12,3 +12,4 @@ cart_item_rel = _db.Table("cart_item_rel",
     _db.Column("item_id", _db.BigInteger,
                _db.ForeignKey("item.id", onupdate="CASCADE", ondelete="CASCADE"), primary_key=True)
 )
+
