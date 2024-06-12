@@ -1,17 +1,17 @@
 from app import db
+from app.models.consumer import ConsumerModel
 
 
 class CartModel(db.Model):
     __tablename__ = "cart"
 
     id = db.Column(db.BigInteger, primary_key=True)
-    consumer_id = db.Column(db.BigInteger, db.ForeignKey("consumer.id", onupdate="CASCADE", ondelete="CASCADE"))
+    consumer_id = db.Column(db.BigInteger, db.ForeignKey(ConsumerModel.id, onupdate="CASCADE", ondelete="CASCADE"))
 
     consumer = db.relationship("ConsumerModel", back_populates="cart")
     items = db.relationship("ItemModel", secondary="cart_item_rel", back_populates="carts")
 
-    def __init__(self, added_time, item_id, consumer_id):
-        self.added_time = added_time
+    def __init__(self, item_id, consumer_id):
         self.item_id = item_id
         self.consumer_id = consumer_id
 
