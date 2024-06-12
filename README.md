@@ -26,5 +26,4 @@ ___
 Relationships:
 + *Developer* and *Item*: **One-to-Many**
 + *Consumer* and *Cart*: **One-to-One**
-+ *Cart* and *Cart_items*: **One-to-Many**
-+ *Item* and *Cart_items*: **One-to-Many**
++ *Cart* and *Item*: **Many-to-Many** via *Cart_item_rel*
