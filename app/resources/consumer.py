@@ -8,13 +8,12 @@ from app.models.consumer import ConsumerModel
 from app import db
 
 
-def server_error(exc):
+def raise_server_error(exc):
     db.session.rollback()
 
     msg = f"Failed to update user: {exc}"
     logger.error(msg)
-    return {"message": msg}, 500
-
+    abort(500, message=msg)
 
 
 class Parser:
@@ -36,14 +35,14 @@ class Consumer(Resource):
 
         if user:
             return jsonify(user.as_json())
-        abort(404)
+        abort(404, message=f"User with id {id} doesn't exists")
 
     def put(self, id):
         data = Consumer.parser.parse_args()
 
         user = ConsumerModel.query.filter_by(id=id).first()
         if not user:
-            return {"message": f"User with id {data['id']} doesn't exists"}, 400
+            abort(400, message=f"User with id {id} doesn't exists")
 
         user.profile_name = data.get("name") or user.profile_name
         user.email = data.get("email") or user.email
@@ -53,20 +52,20 @@ class Consumer(Resource):
         try:
             db.session.commit()
         except Exception as exc:
-            return server_error(exc)
+            raise_server_error(exc)
 
         return {"message": f"User with id {id} updated successfully"}
 
     def delete(self, id):
         user = ConsumerModel.query.filter_by(id=id).first()
         if not user:
-            return {"message": f"User with id {id} doesn't exists"}, 400
+            abort(400, message=f"User with id {id} doesn't exists")
 
         try:
             db.session.delete(user)
             db.session.commit()
         except Exception as exc:
-            return server_error(exc)
+            raise_server_error(exc)
 
         return {"message": f"User with id {id} deleted successfully"}
 
@@ -75,9 +74,9 @@ class ConsumerRegistration(Resource):
     def post(self):
         data = Parser.parser.parse_args()
 
-        is_exists = ConsumerModel.query.filter(ConsumerModel.profile_name == data["name"]).first()
-        if is_exists:
-            return {"message": f"User already exists."}, 400
+        exists = ConsumerModel.query.filter(ConsumerModel.profile_name == data["name"]).first()
+        if exists:
+            abort(400, message="User already exists")
 
         data["password"] = hashlib.sha256(data["password"].encode("utf-8")).hexdigest()
         try:
@@ -87,6 +86,6 @@ class ConsumerRegistration(Resource):
             db.session.commit()
 
         except Exception as exc:
-            return server_error(exc)
+            raise_server_error(exc)
 
         return {"message": f"User({data['name']}) registration success"}
