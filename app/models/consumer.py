@@ -11,8 +11,8 @@ class ConsumerModel(db.Model):
 
     cart = db.relationship("CartModel", back_populates="consumer", uselist=False)
 
-    def __init__(self, profile_name, email, password):
-        self.profile_name = profile_name
+    def __init__(self, name, email, password):
+        self.profile_name = name
         self.email = email
         self.password = password
 

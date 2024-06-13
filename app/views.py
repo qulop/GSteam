@@ -2,9 +2,8 @@ from app import app
 from flask import render_template
 
 
-@app.route("/store")
 @app.route("/")
+@app.route("/store")
 def store_index() -> str:
-    names = ["Amy", "Clara", "Vika"]
+    return "<p>Hello World!</p>"
 
-    return render_template("index.html", page="Home", names=names)

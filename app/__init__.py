@@ -16,8 +16,14 @@ db = sql.SQLAlchemy(app)
 migrate = Migrate(app, db, "db_repo")
 migrate.init_app(app, db)
 
-from app import views
+
+# from app import views
 from app.models import *
+from app.resources import *
+
+api.add_resource(Consumer, "/users/<int:id>")
+api.add_resource(ConsumerRegistration, "/registration/")
+api.add_resource(ItemResource, "/store/items/<int:id>")
 
 with app.app_context():
     db.create_all()
