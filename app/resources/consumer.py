@@ -1,19 +1,11 @@
 from flask_restful import Resource, reqparse
 from flask_smorest import abort
 from flask import jsonify
-from loguru import logger
+from app.utils.utils import raise_server_error
 import hashlib
 
 from app.models.consumer import ConsumerModel
 from app import db
-
-
-def raise_server_error(exc):
-    db.session.rollback()
-
-    msg = f"Failed to update user: {exc}"
-    logger.error(msg)
-    abort(500, message=msg)
 
 
 class Parser:
