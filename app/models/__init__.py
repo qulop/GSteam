@@ -1,5 +1,5 @@
 from app.models.item import ItemModel
-from app.models.consumer import ConsumerModel
+from app.models.user import UsersModel
 from app.models.developer import DeveloperModel
 from app.models.cart import CartModel
 

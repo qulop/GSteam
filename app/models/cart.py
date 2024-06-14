@@ -1,27 +1,26 @@
 from app import db
-from app.models.consumer import ConsumerModel
+from app.models.user import UsersModel
 
 
 class CartModel(db.Model):
     __tablename__ = "cart"
 
     id = db.Column(db.BigInteger, primary_key=True)
-    consumer_id = db.Column(db.BigInteger, db.ForeignKey(ConsumerModel.id, onupdate="CASCADE", ondelete="CASCADE"))
+    user_id = db.Column(db.BigInteger, db.ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"))
 
-    consumer = db.relationship("ConsumerModel", back_populates="cart")
+    user = db.relationship("UsersModel", back_populates="cart")
     items = db.relationship("ItemModel", secondary="cart_item_rel", back_populates="carts")
 
-    def __init__(self, item_id, consumer_id):
-        self.item_id = item_id
-        self.consumer_id = consumer_id
+    def __init__(self, user):
+        self.user = user
 
     def as_json(self):
         return {
             "id": self.id,
             "addedTime": self.added_time,
             "itemId": self.item_id,
-            "consumerId": self.consumer_id
+            "userId": self.user_id
         }
 
     def __repr__(self):
-        return f"<cart: {self.id}/{self.consumer_id}"
+        return f"<cart: {self.id}/{self.user_id}"

@@ -10,7 +10,7 @@ class ItemModel(db.Model):
     price = db.Column(db.Numeric(5, 2), nullable=False, default=0)
     score = db.Column(db.Numeric(2, 1), CheckConstraint("score >= 0 AND score <= 5"), nullable=False, default=0)
     description = db.Column(db.Text, nullable=False)
-    image = db.Column(db.String(128), nullable=True)
+    image = db.Column(db.String(128))
     developer_id = db.Column(db.BigInteger,
         db.ForeignKey("developer.id", onupdate="CASCADE", ondelete="CASCADE"))
 
