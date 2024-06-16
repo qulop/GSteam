@@ -26,7 +26,7 @@ api.add_resource(User, "/users/<int:id>", "/users/")
 api.add_resource(UserRegistration, "/registration/")
 api.add_resource(Item, "/store/items/<int:id>", "/store/items/")
 api.add_resource(Developer, "/developers/<int:id>", "/developers/")
-api.add_resource(Cart, "/cart/<int:id>")
+api.add_resource(Cart, "/cart/")
 
 with app.app_context():
     db.create_all()
