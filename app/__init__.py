@@ -9,6 +9,7 @@ app = Flask(__name__,
     template_folder="../templates", 
     static_folder="../static")
 app.config.from_object("config")
+app.config['PROPAGATE_EXCEPTIONS'] = True
 
 api = Api(app)
 db = SQLAlchemy(app)
@@ -18,11 +19,12 @@ migrate = Migrate(app, db, "db_repo")
 migrate.init_app(app, db)
 
 
-# from app import views
+from app.error_handlers import *
 from app.models import *
 from app.resources import *
 
 api.add_resource(User, "/users/<int:id>", "/users/")
+api.add_resource(UserLogin, "/login/")
 api.add_resource(UserRegistration, "/registration/")
 api.add_resource(Item, "/store/items/<int:id>", "/store/items/")
 api.add_resource(Developer, "/developers/<int:id>", "/developers/")

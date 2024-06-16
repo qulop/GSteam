@@ -29,7 +29,7 @@ class UsersModel(db.Model):
         return {
             "id": self.id,
             "profileName": self.profile_name,
-            "role": self.role
+            "role": self.role.value
         }
 
     def __repr__(self):

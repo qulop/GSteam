@@ -42,18 +42,6 @@ class User(Resource):
             return jsonify(user.as_json())
         abort(404, message=f"User with id {id} doesn't exists")
 
-    def post(self):
-        data = User.parser.parse_args()
-
-        user = UsersModel.query.filter_by(profile_name=data["name"]).one_or_none()
-        if not user:
-            abort(404, message=f"User {data['name']} not found")
-        elif not compare_passwords(user.password, data["password"]):
-            abort(401, message=f"Incorrect password")
-
-        token = create_access_token(identity=user.id)
-        return jsonify(access_token=token)
-
     @jwt_required()
     def put(self, id):
         if get_jwt_identity() != id:
@@ -91,6 +79,20 @@ class User(Resource):
             raise_server_error(exc)
 
         return {"message": f"User with id {id} deleted successfully"}, 204
+
+
+class UserLogin(Resource):
+    def post(self):
+        data = User.parser.parse_args()
+
+        user = UsersModel.query.filter_by(profile_name=data["name"]).one_or_none()
+        if not user:
+            abort(404, message=f"User {data['name']} not found")
+        elif not compare_passwords(user.password, data["password"]):
+            abort(401, message=f"Incorrect password")
+
+        token = create_access_token(identity=user.id)
+        return jsonify(access_token=token)
 
 
 class UserRegistration(Resource):
