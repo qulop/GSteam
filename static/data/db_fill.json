@@ -3,12 +3,14 @@
     {
       "profile_name": "Qulop",
       "email": "qulop.example@gmail.com",
-      "password": "to_hash_0"
+      "password": "to_hash_0",
+      "role": "admin"
     },
     {
       "profile_name": "Joe",
       "email": "joe.example@yahoo.com",
-      "password": "to_hash_1"
+      "password": "to_hash_1",
+      "role": "moderator"
     },
     {
       "profile_name": "MMartiiiNNN",
