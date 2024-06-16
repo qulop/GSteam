@@ -3,7 +3,7 @@ import sys
 
 
 def main(args: list) -> None:
-    app.run(debug=True)
+    app.run(port="5000", debug=True)
 
 
 if __name__ == "__main__":
