@@ -7,7 +7,7 @@ ___
 ### Requirements
 
 + Docker and Docker-Compose
-+ Python 3.9+
++ Python 3.10+
 + PostgreSQL
 ___
 
