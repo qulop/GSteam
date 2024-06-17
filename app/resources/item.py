@@ -43,7 +43,7 @@ class Item(Resource):
         new_item = ItemModel(**data)
         try_to_add_and_commit(new_item)
 
-        return {"message": f"Added successfully"}, 201
+        return {"message": "Added successfully"}, 201
 
     @jwt_required()
     @privileged_user_required(role="admin")
@@ -55,7 +55,8 @@ class Item(Resource):
             abort(404, message=f"Item doesn't exists")
 
         for key, value in data.items():
-            setattr(entry, key, value)
+            if value is not None:
+                setattr(entry, key, value)
 
         try_to_commit()
 
@@ -74,4 +75,4 @@ class Item(Resource):
         except Exception as exc:
             raise_server_error(exc)
 
-        return {"message": f"Item deleted successfully"}, 204
+        return {"message": "Item deleted successfully"}, 204

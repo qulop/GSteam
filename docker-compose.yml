@@ -7,7 +7,7 @@ services:
         env_file:
             - .env.db
         ports:
-            - 5432:5432
+            - 5433:5432
 
     app_service:
         container_name: gsteam_container
@@ -17,6 +17,6 @@ services:
         env_file:
             - .env
         ports:
-            - 8001:8000
+            - 7653:8021
         depends_on:
             - db_service

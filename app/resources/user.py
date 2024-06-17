@@ -14,7 +14,7 @@ from app import db
 
 class Parser:
     parser = reqparse.RequestParser()
-    parser.add_argument("name", type=str, required=True)
+    parser.add_argument("profile_name", type=str, required=True)
     parser.add_argument("email", type=str, required=True)
     parser.add_argument("password", type=str, required=True)
     parser.add_argument("role", type=str)
@@ -22,7 +22,7 @@ class Parser:
 
 class User(Resource):
     parser = Parser.parser.copy()
-    parser.replace_argument("name", type=str)
+    parser.replace_argument("profile_name", type=str)
     parser.replace_argument("email", type=str)
     parser.replace_argument("password", type=str)
 
@@ -53,7 +53,10 @@ class User(Resource):
         if not user:
             abort(404, message=f"User with id {id} doesn't exists")
 
-        for key, value in data:
+        for key, value in data.items():
+            if value is None:
+                continue
+
             if key == "password":
                 value = sha256(value.encode("utf-8")).hexdigest()
             setattr(user, key, value)
@@ -78,16 +81,21 @@ class User(Resource):
         except Exception as exc:
             raise_server_error(exc)
 
+        print("HERE")
         return {"message": f"User with id {id} deleted successfully"}, 204
 
 
 class UserLogin(Resource):
-    def post(self):
-        data = User.parser.parse_args()
+    parser = User.parser.copy()
+    parser.add_argument("profile_name", type=str, required=True)
+    parser.add_argument("password", type=str, required=True)
 
-        user = UsersModel.query.filter_by(profile_name=data["name"]).one_or_none()
+    def post(self):
+        data = UserLogin.parser.parse_args()
+
+        user = UsersModel.query.filter_by(profile_name=data["profile_name"]).one_or_none()
         if not user:
-            abort(404, message=f"User {data['name']} not found")
+            abort(404, message=f"User {data['profile_name']} not found")
         elif not compare_passwords(user.password, data["password"]):
             abort(401, message=f"Incorrect password")
 
@@ -99,7 +107,7 @@ class UserRegistration(Resource):
     def post(self):
         data = Parser.parser.parse_args()
 
-        exists = UsersModel.query.filter(UsersModel.profile_name == data["name"]).first()
+        exists = UsersModel.query.filter(UsersModel.profile_name == data["profile_name"]).first()
         if exists:
             abort(400, message="User already exists")
 
@@ -115,4 +123,4 @@ class UserRegistration(Resource):
         except Exception as exc:
             raise_server_error(exc)
 
-        return {"message": f"User({data['name']}) registration success"}, 201
+        return {"message": "User registration success"}, 201

@@ -11,7 +11,7 @@ from app.utils.db import *
 
 class Cart(Resource):
     parser = reqparse.RequestParser()
-    parser.add_argument("item_id", type=int, required=True)
+    parser.add_argument("item_id", type=int)
 
     def __get_cart_for_user(self, jwt_identity):
         cart = CartModel.query.get(jwt_identity)
@@ -19,6 +19,13 @@ class Cart(Resource):
             abort(404, message=f"Cart doesn't exists")
 
         return cart
+
+    def __delete_item_from_cart(self, cart, item_id):
+        item = next((i for i in cart.items if i.id == item_id), None)
+        if not item:
+            abort(404, message="Item not found in cart")
+
+        cart.items.remove(item)
 
     @jwt_required()
     def get(self):
@@ -29,12 +36,17 @@ class Cart(Resource):
 
     @jwt_required()
     def delete(self):
+        data = Cart.parser.parse_args()
         cart = self.__get_cart_for_user(get_jwt_identity())
 
-        cart.items.clear()
+        if data["item_id"] is not None:
+            self.__delete_item_from_cart(cart, data["item_id"])
+        else:
+            cart.items.clear()
+
         try_to_commit()
 
-        return {"message": "Cart clear success"}, 200
+        return {"message": "Operation success"}, 200
 
     @jwt_required()
     def put(self):
@@ -52,11 +64,14 @@ class Cart(Resource):
 
 
 def delete_related_cart(user_id):
-    related_cart = CartModel.query.filter_by(user_id=user_id)
-    if not related_cart:
-        raise NoResultFound(f"Cannot find related cart to user with ID {user_id}")
+    related_carts = CartModel.query.filter_by(user_id=user_id).all()
 
-    db.session.delete(related_cart)
+    for cart in related_carts:
+        print(cart)
+        try:
+            db.session.delete(cart)
+        except:
+            raise NoResultFound(f"No related cart found for user {id}")
 
 
 def create_new_cart(user):

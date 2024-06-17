@@ -38,7 +38,7 @@ class Developer(Resource):
         new_dev = DeveloperModel(**data)
         try_to_add_and_commit(new_dev)
 
-        return {"message": f"Added successfully"}, 201
+        return {"message": "Added successfully"}, 201
 
     @jwt_required()
     @privileged_user_required(role="admin")
@@ -50,7 +50,8 @@ class Developer(Resource):
             abort(404, message=f"Developer doesn't exists")
 
         for key, value in data.items():
-            setattr(entry, key, value)
+            if value is not None:
+                setattr(entry, key, value)
 
         try:
             db.session.commit()
@@ -72,4 +73,4 @@ class Developer(Resource):
         except Exception as exc:
             raise_server_error(exc)
 
-        return {"message": f"Developer deleted successfully"}, 204
+        return {"message": "Developer deleted successfully"}, 204
